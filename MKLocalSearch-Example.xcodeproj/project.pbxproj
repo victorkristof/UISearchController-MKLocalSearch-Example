@@ -14,6 +14,8 @@
 		0CAAAD8519CC491C009ED137 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAAD8419CC491C009ED137 /* Images.xcassets */; };
 		0CAAAD8819CC491C009ED137 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAAD8619CC491C009ED137 /* LaunchScreen.xib */; };
 		0CAAAD9419CC491C009ED137 /* MKLocalSearch_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAAAD9319CC491C009ED137 /* MKLocalSearch_ExampleTests.m */; };
+		0CAAAD9E19CC4D37009ED137 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAAAD9D19CC4D37009ED137 /* MapKit.framework */; };
+		0CAAADA019CC56D4009ED137 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,8 @@
 		0CAAAD8D19CC491C009ED137 /* MKLocalSearch-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MKLocalSearch-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CAAAD9219CC491C009ED137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CAAAD9319CC491C009ED137 /* MKLocalSearch_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKLocalSearch_ExampleTests.m; sourceTree = "<group>"; };
+		0CAAAD9D19CC4D37009ED137 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0CAAADA019CC56D4009ED137 /* CoreLocation.framework in Frameworks */,
+				0CAAAD9E19CC4D37009ED137 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +69,8 @@
 		0CAAAD6B19CC491C009ED137 = {
 			isa = PBXGroup;
 			children = (
+				0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */,
+				0CAAAD9D19CC4D37009ED137 /* MapKit.framework */,
 				0CAAAD7619CC491C009ED137 /* MKLocalSearch-Example */,
 				0CAAAD9019CC491C009ED137 /* MKLocalSearch-ExampleTests */,
 				0CAAAD7519CC491C009ED137 /* Products */,

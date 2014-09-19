@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment version="1792" identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Alignment constraints with different attributes" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -15,11 +18,94 @@
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="ADd-Ok-rUl">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                            </mapView>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvf-vT-Cr2">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="n70-Vz-XtX"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="MapView" id="hha-cn-E52"/>
+                                </items>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="n70-Vz-XtX"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="n70-Vz-XtX"/>
+                                    </mask>
+                                </variation>
+                            </navigationBar>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="2fW-Ir-kj5">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="ADd-Ok-rUl" secondAttribute="bottom" id="444-Kj-cmN"/>
+                            <constraint firstItem="2fW-Ir-kj5" firstAttribute="top" secondItem="zvf-vT-Cr2" secondAttribute="bottom" id="5T3-6s-Qjt"/>
+                            <constraint firstItem="ADd-Ok-rUl" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="5u9-VC-u62"/>
+                            <constraint firstItem="zvf-vT-Cr2" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="Hrl-LP-Y8v"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ADd-Ok-rUl" secondAttribute="trailing" constant="-16" id="UCh-Aw-cYD"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="2fW-Ir-kj5" secondAttribute="trailing" constant="-16" id="W1F-Jq-Rrh"/>
+                            <constraint firstItem="2fW-Ir-kj5" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="XUB-Cy-31K"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="zvf-vT-Cr2" secondAttribute="trailing" constant="-16" id="oSh-Ju-UTR"/>
+                            <constraint firstItem="zvf-vT-Cr2" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" id="s3f-rl-rvN"/>
+                            <constraint firstItem="ADd-Ok-rUl" firstAttribute="top" secondItem="zvf-vT-Cr2" secondAttribute="bottom" id="xrf-qQ-KjV"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="ADd-Ok-rUl"/>
+                                <exclude reference="zvf-vT-Cr2"/>
+                                <exclude reference="2fW-Ir-kj5"/>
+                            </mask>
+                            <mask key="constraints">
+                                <exclude reference="Hrl-LP-Y8v"/>
+                                <exclude reference="oSh-Ju-UTR"/>
+                                <exclude reference="s3f-rl-rvN"/>
+                                <exclude reference="5T3-6s-Qjt"/>
+                                <exclude reference="W1F-Jq-Rrh"/>
+                                <exclude reference="XUB-Cy-31K"/>
+                                <exclude reference="5u9-VC-u62"/>
+                                <exclude reference="UCh-Aw-cYD"/>
+                                <exclude reference="xrf-qQ-KjV"/>
+                                <exclude reference="444-Kj-cmN"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="ADd-Ok-rUl"/>
+                                <include reference="zvf-vT-Cr2"/>
+                                <include reference="2fW-Ir-kj5"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="Hrl-LP-Y8v"/>
+                                <include reference="oSh-Ju-UTR"/>
+                                <include reference="s3f-rl-rvN"/>
+                                <include reference="5T3-6s-Qjt"/>
+                                <include reference="W1F-Jq-Rrh"/>
+                                <include reference="XUB-Cy-31K"/>
+                                <include reference="5u9-VC-u62"/>
+                                <include reference="UCh-Aw-cYD"/>
+                                <include reference="xrf-qQ-KjV"/>
+                                <include reference="444-Kj-cmN"/>
+                            </mask>
+                        </variation>
                     </view>
+                    <connections>
+                        <outlet property="mapView" destination="ADd-Ok-rUl" id="saM-hT-UbS"/>
+                        <outlet property="searchBar" destination="2fW-Ir-kj5" id="4ao-r5-FXN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="871.5" y="339"/>
         </scene>
     </scenes>
 </document>
