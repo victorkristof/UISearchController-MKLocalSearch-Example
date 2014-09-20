@@ -10,7 +10,7 @@
 
 @interface ViewController ()
 
-- (BOOL)setupLocationManager:(CLLocationManager *)locationManager;
+- (BOOL)setupLocationManager;
 
 @end
 
@@ -18,7 +18,6 @@
 
 @synthesize searchController;
 @synthesize localSearch;
-@synthesize searchBar;
 @synthesize results;
 @synthesize mapView;
 @synthesize locationManager;
@@ -26,24 +25,34 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	UITableViewController *searchResultsController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
-	searchResultsController.tableView = self.tableView;
-	searchResultsController.tableView.dataSource = self;
-	searchResultsController.tableView.delegate = self;
+	// Keep the subviews inside the top and bottom layout guides
+	self.edgesForExtendedLayout = UIRectEdgeLeft | UIRectEdgeBottom | UIRectEdgeRight;
+	// Fix black glow on navigation bar
+	[self.navigationController.view setBackgroundColor:[UIColor whiteColor]];
 	
-	self.searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultsController];
-	[self.searchController setDelegate:self];
-	[self.searchBar setDelegate:self];
-	
-//	self.tableView.tableHeaderView = self.searchBar;
-//	self.definesPresentationContext = YES;
-	
-	if ([self setupLocationManager:self.locationManager]) {
-		[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+	if ([self setupLocationManager]) {
 		[self.locationManager startUpdatingLocation];
+		[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
 	} else {
 		NSLog(@"Location Services disabled.");
 	}
+	
+	// The TableViewController used to display the results of a search
+	UITableViewController *searchResultsController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+	searchResultsController.tableView.dataSource = self;
+	searchResultsController.tableView.delegate = self;
+	
+	// Initialize our UISearchController
+	self.searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultsController];
+	self.searchController.delegate = self;
+	self.searchController.searchBar.delegate = self;
+	
+	// Add SearchController's search bar to our view and bring it to front
+	self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.view.frame.size.width, 44.0);
+	[self.view addSubview:self.searchController.searchBar];
+	[self.view bringSubviewToFront:self.searchController.searchBar];
+	
+	self.definesPresentationContext = YES;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,11 +60,7 @@
 	// Dispose of any resources that can be recreated.
 }
 
-- (void)willPresentSearchController:(UISearchController *)aSearchController {
-	NSLog(@"Will present search controller %@", aSearchController);
-}
-
-- (BOOL)setupLocationManager:(CLLocationManager *)aLocationManager {
+- (BOOL)setupLocationManager {
 	BOOL isSetup = NO;
 	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
 		[[[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
@@ -72,21 +77,42 @@
 						  otherButtonTitles:@"Ok", nil] show];
 		return isSetup;
 	} else {
-		aLocationManager = [[CLLocationManager alloc] init];
+		self.locationManager = [[CLLocationManager alloc] init];
 		if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
+			// Request localisation only when app is in front
 			[self.locationManager requestWhenInUseAuthorization];
-			// Request only when app is in front
 		}
 		if ([CLLocationManager locationServicesEnabled]) {
-			aLocationManager.delegate = self;
-			aLocationManager.distanceFilter = 10;
-			aLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
+			self.locationManager.delegate = self;
+			self.locationManager.distanceFilter = 10;
+			self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 			isSetup = YES;
 			return isSetup;
 		}
 		
 		return isSetup;
 	}
+}
+
+-(void)willPresentSearchController:(UISearchController *)aSearchController {
+	
+	[((UITableViewController *)aSearchController.searchResultsController).tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
+	
+	// Set the position of the result's table view below the status bar and search bar
+	// Use of instance variable to do it only once, otherwise it goes down at every search request
+	if (CGRectIsEmpty(_searchTableViewRect)) {
+		
+		CGRect tableViewFrame = ((UITableViewController *)aSearchController.searchResultsController).tableView
+		.frame;
+		
+		tableViewFrame.origin.y = tableViewFrame.origin.y + 64;
+		tableViewFrame.size.height =  tableViewFrame.size.height;
+		
+		_searchTableViewRect = tableViewFrame;
+		
+	}
+	
+	[((UITableViewController *)aSearchController.searchResultsController).tableView setFrame:_searchTableViewRect];
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
@@ -104,7 +130,6 @@
 	[self.localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
 		
 		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		[self.tableView setHidden:NO];
 		
 		if (error != nil) {
 			[[[UIAlertView alloc] initWithTitle:@"Map Error"
@@ -128,7 +153,6 @@
 		
 		//	[self.searchController setActive:YES];
 		
-		[[(UITableViewController *)self.searchController.searchResultsController tableView] setHidden:NO];
 		[[(UITableViewController *)self.searchController.searchResultsController tableView] reloadData];
 	}];
 }
@@ -154,16 +178,10 @@
 	return cell;
 }
 
--(void)searchBarTextDidEndEditing:(UISearchBar *)aSearchBar{
-	if ([aSearchBar.text isEqualToString:@""]) {
-		[self.tableView setHidden:YES];
-	}
-}
-
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-//	[self.searchController setActive:NO];
-	[[(UITableViewController *)self.searchController.searchResultsController tableView] setHidden:YES];
+	// Hide search controller
+	[self.searchController setActive:NO];
 	
 	MKMapItem *item = self.results.mapItems[indexPath.row];
 	
