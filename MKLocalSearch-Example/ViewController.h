@@ -12,11 +12,16 @@
 
 @interface ViewController : UIViewController <	UISearchBarDelegate,
 												UISearchControllerDelegate,
-												CLLocationManagerDelegate>
+												CLLocationManagerDelegate,
+												UITableViewDataSource,
+												UITableViewDelegate>
 
 // Search
 @property (strong, nonatomic) UISearchController *searchController;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (strong, nonatomic) MKLocalSearch *localSearch;
+@property (strong, nonatomic) MKLocalSearchResponse *results;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 // Map
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;

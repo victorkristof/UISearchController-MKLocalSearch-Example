@@ -420,6 +420,7 @@
 				0CAAAD9919CC491C009ED137 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0CAAAD9A19CC491C009ED137 /* Build configuration list for PBXNativeTarget "MKLocalSearch-ExampleTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +429,7 @@
 				0CAAAD9C19CC491C009ED137 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
