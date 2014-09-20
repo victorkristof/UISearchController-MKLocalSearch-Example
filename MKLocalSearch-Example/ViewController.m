@@ -39,6 +39,7 @@
 	
 	// The TableViewController used to display the results of a search
 	UITableViewController *searchResultsController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
+	searchResultsController.automaticallyAdjustsScrollViewInsets = NO; // Remove table view insets
 	searchResultsController.tableView.dataSource = self;
 	searchResultsController.tableView.delegate = self;
 	
@@ -48,7 +49,12 @@
 	self.searchController.searchBar.delegate = self;
 	
 	// Add SearchController's search bar to our view and bring it to front
-	self.searchController.searchBar.frame = CGRectMake(self.searchController.searchBar.frame.origin.x, self.searchController.searchBar.frame.origin.y, self.view.frame.size.width, 44.0);
+	CGRect searchBarFrame = self.searchController.searchBar.frame;
+	CGRect viewFrame = self.view.frame;
+	self.searchController.searchBar.frame = CGRectMake(searchBarFrame.origin.x,
+													   searchBarFrame.origin.y,
+													   viewFrame.size.width,
+													   44.0);
 	[self.view addSubview:self.searchController.searchBar];
 	[self.view bringSubviewToFront:self.searchController.searchBar];
 	
@@ -96,20 +102,15 @@
 
 -(void)willPresentSearchController:(UISearchController *)aSearchController {
 	
-	[((UITableViewController *)aSearchController.searchResultsController).tableView setContentInset:UIEdgeInsetsMake(0.0f, 0.0f, 0.0f, 0.0f)];
-	
 	// Set the position of the result's table view below the status bar and search bar
 	// Use of instance variable to do it only once, otherwise it goes down at every search request
 	if (CGRectIsEmpty(_searchTableViewRect)) {
-		
 		CGRect tableViewFrame = ((UITableViewController *)aSearchController.searchResultsController).tableView
 		.frame;
-		
-		tableViewFrame.origin.y = tableViewFrame.origin.y + 64;
+		tableViewFrame.origin.y = tableViewFrame.origin.y + 64; //status bar (20) + nav bar (44)
 		tableViewFrame.size.height =  tableViewFrame.size.height;
 		
 		_searchTableViewRect = tableViewFrame;
-		
 	}
 	
 	[((UITableViewController *)aSearchController.searchResultsController).tableView setFrame:_searchTableViewRect];
