@@ -55,6 +55,7 @@
 													   searchBarFrame.origin.y,
 													   viewFrame.size.width,
 													   44.0);
+	
 	[self.view addSubview:self.searchController.searchBar];
 	[self.view bringSubviewToFront:self.searchController.searchBar];
 	
@@ -114,6 +115,50 @@
 	}
 	
 	[((UITableViewController *)aSearchController.searchResultsController).tableView setFrame:_searchTableViewRect];
+}
+
+- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
+	
+	if (![searchText isEqualToString:@""]) {
+		// Cancel any previous searches.
+		[self.localSearch cancel];
+		
+		MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+		request.naturalLanguageQuery = searchText;
+		request.region = self.mapView.region;
+		
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+		self.localSearch = [[MKLocalSearch alloc] initWithRequest:request];
+		
+		[self.localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
+			
+			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+			
+			if (error != nil) {
+				[[[UIAlertView alloc] initWithTitle:@"Map Error"
+											message:[error description]
+										   delegate:nil
+								  cancelButtonTitle:@"OK"
+								  otherButtonTitles:nil] show];
+				return;
+			}
+			
+			if ([response.mapItems count] == 0) {
+				[[[UIAlertView alloc] initWithTitle:@"No Results"
+											message:nil
+										   delegate:nil
+								  cancelButtonTitle:@"OK"
+								  otherButtonTitles:nil] show];
+				return;
+			}
+			
+			self.results = response;
+			
+			//	[self.searchController setActive:YES];
+			
+			[[(UITableViewController *)self.searchController.searchResultsController tableView] reloadData];
+		}];
+	}
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {

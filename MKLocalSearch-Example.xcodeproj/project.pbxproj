@@ -69,11 +69,11 @@
 		0CAAAD6B19CC491C009ED137 = {
 			isa = PBXGroup;
 			children = (
-				0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */,
-				0CAAAD9D19CC4D37009ED137 /* MapKit.framework */,
 				0CAAAD7619CC491C009ED137 /* MKLocalSearch-Example */,
 				0CAAAD9019CC491C009ED137 /* MKLocalSearch-ExampleTests */,
 				0CAAAD7519CC491C009ED137 /* Products */,
+				0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */,
+				0CAAAD9D19CC4D37009ED137 /* MapKit.framework */,
 			);
 			sourceTree = "<group>";
 		};
