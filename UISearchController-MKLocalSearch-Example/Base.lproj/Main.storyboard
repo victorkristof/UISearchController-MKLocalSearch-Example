@@ -25,9 +25,13 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="2fw-Q8-fHy" firstAttribute="leading" secondItem="614-GU-fQh" secondAttribute="leadingMargin" constant="-16" id="19L-LM-OZs"/>
+                            <constraint firstItem="2fw-Q8-fHy" firstAttribute="top" secondItem="614-GU-fQh" secondAttribute="top" id="EBt-Ia-lnw"/>
                             <constraint firstItem="rN2-Dq-COM" firstAttribute="top" secondItem="2fw-Q8-fHy" secondAttribute="bottom" id="GGY-HD-0t3"/>
                             <constraint firstItem="2fw-Q8-fHy" firstAttribute="top" secondItem="614-GU-fQh" secondAttribute="topMargin" id="Hf4-fL-all"/>
+                            <constraint firstItem="2fw-Q8-fHy" firstAttribute="bottom" secondItem="rN2-Dq-COM" secondAttribute="top" id="Tnp-89-G2U"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2fw-Q8-fHy" secondAttribute="trailing" constant="-16" id="drr-Kj-mbr"/>
+                            <constraint firstItem="2fw-Q8-fHy" firstAttribute="trailing" secondItem="rN2-Dq-COM" secondAttribute="trailing" id="etB-e7-at8"/>
+                            <constraint firstItem="2fw-Q8-fHy" firstAttribute="leading" secondItem="rN2-Dq-COM" secondAttribute="leading" id="xL6-hH-m4Y"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">

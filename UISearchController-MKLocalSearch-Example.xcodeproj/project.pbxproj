@@ -7,15 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0C08972619CED34300A672A6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAAD8119CC491C009ED137 /* Main.storyboard */; };
+		0C08972719CED34300A672A6 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAAD8619CC491C009ED137 /* LaunchScreen.xib */; };
+		0C1BA37D19CE42F0009F2C89 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */; };
+		0C1BA37E19CE42F5009F2C89 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAAAD9D19CC4D37009ED137 /* MapKit.framework */; };
 		0CAAAD7A19CC491C009ED137 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAAAD7919CC491C009ED137 /* main.m */; };
 		0CAAAD7D19CC491C009ED137 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAAAD7C19CC491C009ED137 /* AppDelegate.m */; };
 		0CAAAD8019CC491C009ED137 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAAAD7F19CC491C009ED137 /* ViewController.m */; };
-		0CAAAD8319CC491C009ED137 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAAD8119CC491C009ED137 /* Main.storyboard */; };
 		0CAAAD8519CC491C009ED137 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAAD8419CC491C009ED137 /* Images.xcassets */; };
-		0CAAAD8819CC491C009ED137 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0CAAAD8619CC491C009ED137 /* LaunchScreen.xib */; };
 		0CAAAD9419CC491C009ED137 /* MKLocalSearch_ExampleTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CAAAD9319CC491C009ED137 /* MKLocalSearch_ExampleTests.m */; };
-		0CAAAD9E19CC4D37009ED137 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAAAD9D19CC4D37009ED137 /* MapKit.framework */; };
-		0CAAADA019CC56D4009ED137 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +29,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0CAAAD7419CC491C009ED137 /* MKLocalSearch-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MKLocalSearch-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CAAAD7419CC491C009ED137 /* UISearchController-MKLocalSearch-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UISearchController-MKLocalSearch-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CAAAD7819CC491C009ED137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CAAAD7919CC491C009ED137 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0CAAAD7B19CC491C009ED137 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -39,7 +39,7 @@
 		0CAAAD8219CC491C009ED137 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		0CAAAD8419CC491C009ED137 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		0CAAAD8719CC491C009ED137 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
-		0CAAAD8D19CC491C009ED137 /* MKLocalSearch-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "MKLocalSearch-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		0CAAAD8D19CC491C009ED137 /* UISearchController-MKLocalSearch-ExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UISearchController-MKLocalSearch-ExampleTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0CAAAD9219CC491C009ED137 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0CAAAD9319CC491C009ED137 /* MKLocalSearch_ExampleTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MKLocalSearch_ExampleTests.m; sourceTree = "<group>"; };
 		0CAAAD9D19CC4D37009ED137 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -51,8 +51,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CAAADA019CC56D4009ED137 /* CoreLocation.framework in Frameworks */,
-				0CAAAD9E19CC4D37009ED137 /* MapKit.framework in Frameworks */,
+				0C1BA37E19CE42F5009F2C89 /* MapKit.framework in Frameworks */,
+				0C1BA37D19CE42F0009F2C89 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -69,7 +69,7 @@
 		0CAAAD6B19CC491C009ED137 = {
 			isa = PBXGroup;
 			children = (
-				0CAAAD7619CC491C009ED137 /* MKLocalSearch-Example */,
+				0CAAAD7619CC491C009ED137 /* UISearchController-MKLocalSearch-Example */,
 				0CAAAD9019CC491C009ED137 /* MKLocalSearch-ExampleTests */,
 				0CAAAD7519CC491C009ED137 /* Products */,
 				0CAAAD9F19CC56D4009ED137 /* CoreLocation.framework */,
@@ -80,13 +80,13 @@
 		0CAAAD7519CC491C009ED137 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				0CAAAD7419CC491C009ED137 /* MKLocalSearch-Example.app */,
-				0CAAAD8D19CC491C009ED137 /* MKLocalSearch-ExampleTests.xctest */,
+				0CAAAD7419CC491C009ED137 /* UISearchController-MKLocalSearch-Example.app */,
+				0CAAAD8D19CC491C009ED137 /* UISearchController-MKLocalSearch-ExampleTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		0CAAAD7619CC491C009ED137 /* MKLocalSearch-Example */ = {
+		0CAAAD7619CC491C009ED137 /* UISearchController-MKLocalSearch-Example */ = {
 			isa = PBXGroup;
 			children = (
 				0CAAAD7B19CC491C009ED137 /* AppDelegate.h */,
@@ -98,7 +98,7 @@
 				0CAAAD8619CC491C009ED137 /* LaunchScreen.xib */,
 				0CAAAD7719CC491C009ED137 /* Supporting Files */,
 			);
-			path = "MKLocalSearch-Example";
+			path = "UISearchController-MKLocalSearch-Example";
 			sourceTree = "<group>";
 		};
 		0CAAAD7719CC491C009ED137 /* Supporting Files */ = {
@@ -116,7 +116,8 @@
 				0CAAAD9319CC491C009ED137 /* MKLocalSearch_ExampleTests.m */,
 				0CAAAD9119CC491C009ED137 /* Supporting Files */,
 			);
-			path = "MKLocalSearch-ExampleTests";
+			name = "MKLocalSearch-ExampleTests";
+			path = "UISearchController-MKLocalSearch-ExampleTests";
 			sourceTree = "<group>";
 		};
 		0CAAAD9119CC491C009ED137 /* Supporting Files */ = {
@@ -130,9 +131,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		0CAAAD7319CC491C009ED137 /* MKLocalSearch-Example */ = {
+		0CAAAD7319CC491C009ED137 /* UISearchController-MKLocalSearch-Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0CAAAD9719CC491C009ED137 /* Build configuration list for PBXNativeTarget "MKLocalSearch-Example" */;
+			buildConfigurationList = 0CAAAD9719CC491C009ED137 /* Build configuration list for PBXNativeTarget "UISearchController-MKLocalSearch-Example" */;
 			buildPhases = (
 				0CAAAD7019CC491C009ED137 /* Sources */,
 				0CAAAD7119CC491C009ED137 /* Frameworks */,
@@ -142,14 +143,14 @@
 			);
 			dependencies = (
 			);
-			name = "MKLocalSearch-Example";
+			name = "UISearchController-MKLocalSearch-Example";
 			productName = "MKLocalSearch-Example";
-			productReference = 0CAAAD7419CC491C009ED137 /* MKLocalSearch-Example.app */;
+			productReference = 0CAAAD7419CC491C009ED137 /* UISearchController-MKLocalSearch-Example.app */;
 			productType = "com.apple.product-type.application";
 		};
-		0CAAAD8C19CC491C009ED137 /* MKLocalSearch-ExampleTests */ = {
+		0CAAAD8C19CC491C009ED137 /* UISearchController-MKLocalSearch-ExampleTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0CAAAD9A19CC491C009ED137 /* Build configuration list for PBXNativeTarget "MKLocalSearch-ExampleTests" */;
+			buildConfigurationList = 0CAAAD9A19CC491C009ED137 /* Build configuration list for PBXNativeTarget "UISearchController-MKLocalSearch-ExampleTests" */;
 			buildPhases = (
 				0CAAAD8919CC491C009ED137 /* Sources */,
 				0CAAAD8A19CC491C009ED137 /* Frameworks */,
@@ -160,9 +161,9 @@
 			dependencies = (
 				0CAAAD8F19CC491C009ED137 /* PBXTargetDependency */,
 			);
-			name = "MKLocalSearch-ExampleTests";
+			name = "UISearchController-MKLocalSearch-ExampleTests";
 			productName = "MKLocalSearch-ExampleTests";
-			productReference = 0CAAAD8D19CC491C009ED137 /* MKLocalSearch-ExampleTests.xctest */;
+			productReference = 0CAAAD8D19CC491C009ED137 /* UISearchController-MKLocalSearch-ExampleTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -183,7 +184,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 0CAAAD6F19CC491C009ED137 /* Build configuration list for PBXProject "MKLocalSearch-Example" */;
+			buildConfigurationList = 0CAAAD6F19CC491C009ED137 /* Build configuration list for PBXProject "UISearchController-MKLocalSearch-Example" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -196,8 +197,8 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				0CAAAD7319CC491C009ED137 /* MKLocalSearch-Example */,
-				0CAAAD8C19CC491C009ED137 /* MKLocalSearch-ExampleTests */,
+				0CAAAD7319CC491C009ED137 /* UISearchController-MKLocalSearch-Example */,
+				0CAAAD8C19CC491C009ED137 /* UISearchController-MKLocalSearch-ExampleTests */,
 			);
 		};
 /* End PBXProject section */
@@ -207,8 +208,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0CAAAD8319CC491C009ED137 /* Main.storyboard in Resources */,
-				0CAAAD8819CC491C009ED137 /* LaunchScreen.xib in Resources */,
+				0C08972619CED34300A672A6 /* Main.storyboard in Resources */,
+				0C08972719CED34300A672A6 /* LaunchScreen.xib in Resources */,
 				0CAAAD8519CC491C009ED137 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -246,7 +247,7 @@
 /* Begin PBXTargetDependency section */
 		0CAAAD8F19CC491C009ED137 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 0CAAAD7319CC491C009ED137 /* MKLocalSearch-Example */;
+			target = 0CAAAD7319CC491C009ED137 /* UISearchController-MKLocalSearch-Example */;
 			targetProxy = 0CAAAD8E19CC491C009ED137 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -351,9 +352,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "MKLocalSearch-Example/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/UISearchController-MKLocalSearch-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "UISearchController-MKLocalSearch-Example";
 			};
 			name = Debug;
 		};
@@ -361,9 +362,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = "MKLocalSearch-Example/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/UISearchController-MKLocalSearch-Example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = "UISearchController-MKLocalSearch-Example";
 			};
 			name = Release;
 		};
@@ -379,10 +380,10 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MKLocalSearch-ExampleTests/Info.plist";
+				INFOPLIST_FILE = "UISearchController-MKLocalSearch-ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MKLocalSearch-Example.app/MKLocalSearch-Example";
+				PRODUCT_NAME = "UISearchController-MKLocalSearch-ExampleTests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UISearchController-MKLocalSearch-Example.app/UISearchController-MKLocalSearch-Example";
 			};
 			name = Debug;
 		};
@@ -394,17 +395,17 @@
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = "MKLocalSearch-ExampleTests/Info.plist";
+				INFOPLIST_FILE = "UISearchController-MKLocalSearch-ExampleTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MKLocalSearch-Example.app/MKLocalSearch-Example";
+				PRODUCT_NAME = "UISearchController-MKLocalSearch-ExampleTests";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/UISearchController-MKLocalSearch-Example.app/UISearchController-MKLocalSearch-Example";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0CAAAD6F19CC491C009ED137 /* Build configuration list for PBXProject "MKLocalSearch-Example" */ = {
+		0CAAAD6F19CC491C009ED137 /* Build configuration list for PBXProject "UISearchController-MKLocalSearch-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0CAAAD9519CC491C009ED137 /* Debug */,
@@ -413,7 +414,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0CAAAD9719CC491C009ED137 /* Build configuration list for PBXNativeTarget "MKLocalSearch-Example" */ = {
+		0CAAAD9719CC491C009ED137 /* Build configuration list for PBXNativeTarget "UISearchController-MKLocalSearch-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0CAAAD9819CC491C009ED137 /* Debug */,
@@ -422,7 +423,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		0CAAAD9A19CC491C009ED137 /* Build configuration list for PBXNativeTarget "MKLocalSearch-ExampleTests" */ = {
+		0CAAAD9A19CC491C009ED137 /* Build configuration list for PBXNativeTarget "UISearchController-MKLocalSearch-ExampleTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				0CAAAD9B19CC491C009ED137 /* Debug */,

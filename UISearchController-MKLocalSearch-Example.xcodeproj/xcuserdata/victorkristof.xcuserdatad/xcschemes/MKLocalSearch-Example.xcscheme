@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0CAAAD7319CC491C009ED137"
-               BuildableName = "MKLocalSearch-Example.app"
-               BlueprintName = "MKLocalSearch-Example"
-               ReferencedContainer = "container:MKLocalSearch-Example.xcodeproj">
+               BuildableName = "UISearchController-MKLocalSearch-Example.app"
+               BlueprintName = "UISearchController-MKLocalSearch-Example"
+               ReferencedContainer = "container:UISearchController-MKLocalSearch-Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
@@ -29,9 +29,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0CAAAD8C19CC491C009ED137"
-               BuildableName = "MKLocalSearch-ExampleTests.xctest"
-               BlueprintName = "MKLocalSearch-ExampleTests"
-               ReferencedContainer = "container:MKLocalSearch-Example.xcodeproj">
+               BuildableName = "UISearchController-MKLocalSearch-ExampleTests.xctest"
+               BlueprintName = "UISearchController-MKLocalSearch-ExampleTests"
+               ReferencedContainer = "container:UISearchController-MKLocalSearch-Example.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -47,9 +47,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "0CAAAD8C19CC491C009ED137"
-               BuildableName = "MKLocalSearch-ExampleTests.xctest"
-               BlueprintName = "MKLocalSearch-ExampleTests"
-               ReferencedContainer = "container:MKLocalSearch-Example.xcodeproj">
+               BuildableName = "UISearchController-MKLocalSearch-ExampleTests.xctest"
+               BlueprintName = "UISearchController-MKLocalSearch-ExampleTests"
+               ReferencedContainer = "container:UISearchController-MKLocalSearch-Example.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -57,9 +57,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0CAAAD7319CC491C009ED137"
-            BuildableName = "MKLocalSearch-Example.app"
-            BlueprintName = "MKLocalSearch-Example"
-            ReferencedContainer = "container:MKLocalSearch-Example.xcodeproj">
+            BuildableName = "UISearchController-MKLocalSearch-Example.app"
+            BlueprintName = "UISearchController-MKLocalSearch-Example"
+            ReferencedContainer = "container:UISearchController-MKLocalSearch-Example.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </TestAction>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0CAAAD7319CC491C009ED137"
-            BuildableName = "MKLocalSearch-Example.app"
-            BlueprintName = "MKLocalSearch-Example"
-            ReferencedContainer = "container:MKLocalSearch-Example.xcodeproj">
+            BuildableName = "UISearchController-MKLocalSearch-Example.app"
+            BlueprintName = "UISearchController-MKLocalSearch-Example"
+            ReferencedContainer = "container:UISearchController-MKLocalSearch-Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -94,9 +94,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "0CAAAD7319CC491C009ED137"
-            BuildableName = "MKLocalSearch-Example.app"
-            BlueprintName = "MKLocalSearch-Example"
-            ReferencedContainer = "container:MKLocalSearch-Example.xcodeproj">
+            BuildableName = "UISearchController-MKLocalSearch-Example.app"
+            BlueprintName = "UISearchController-MKLocalSearch-Example"
+            ReferencedContainer = "container:UISearchController-MKLocalSearch-Example.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

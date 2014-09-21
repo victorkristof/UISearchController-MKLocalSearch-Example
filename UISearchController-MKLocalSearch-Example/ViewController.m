@@ -103,6 +103,11 @@
 
 -(void)willPresentSearchController:(UISearchController *)aSearchController {
 	
+	CGRect searchBarFrame = aSearchController.searchBar.frame;
+	self.searchController.searchBar.frame = CGRectMake(searchBarFrame.origin.x,
+													   searchBarFrame.origin.y,
+													   self.view.frame.size.width,
+													   64.0);
 	// Set the position of the result's table view below the status bar and search bar
 	// Use of instance variable to do it only once, otherwise it goes down at every search request
 	if (CGRectIsEmpty(_searchTableViewRect)) {
