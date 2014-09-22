@@ -10,7 +10,10 @@
 
 @interface ViewController ()
 
-- (BOOL)setupLocationManager;
+- (void) setupLocationManager;
+- (BOOL) enableLocationServices;
+- (void) setupSearchController;
+- (void) setupSearchBar;
 
 @end
 
@@ -22,7 +25,7 @@
 @synthesize mapView;
 @synthesize locationManager;
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
 	[super viewDidLoad];
 	
 	// Keep the subviews inside the top and bottom layout guides
@@ -30,12 +33,30 @@
 	// Fix black glow on navigation bar
 	[self.navigationController.view setBackgroundColor:[UIColor whiteColor]];
 	
-	if ([self setupLocationManager]) {
-		[self.locationManager startUpdatingLocation];
-		[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
-	} else {
-		NSLog(@"Location Services disabled.");
-	}
+	// Set up location operators
+	[self setupLocationManager];
+	// Set up search operators
+	[self setupSearchController];
+	[self setupSearchBar];
+	
+	// Should make search bar extend underneath status bar (DOES NOT WORK)
+	self.definesPresentationContext = YES;
+}
+
+- (void)didReceiveMemoryWarning {
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
+}
+
+- (void) setupLocationManager {
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.delegate = self;
+	
+	// Will call locationManager:didChangeAuthorizationStatus: delegate method
+	[self.locationManager requestWhenInUseAuthorization];
+}
+
+-(void) setupSearchController {
 	
 	// The TableViewController used to display the results of a search
 	UITableViewController *searchResultsController = [[UITableViewController alloc] initWithStyle:UITableViewStylePlain];
@@ -47,8 +68,12 @@
 	self.searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultsController];
 	self.searchController.delegate = self;
 	self.searchController.searchBar.delegate = self;
+
+}
+
+-(void) setupSearchBar {
 	
-	// Add SearchController's search bar to our view and bring it to front
+	// Set search bar dimension and position
 	CGRect searchBarFrame = self.searchController.searchBar.frame;
 	CGRect viewFrame = self.view.frame;
 	self.searchController.searchBar.frame = CGRectMake(searchBarFrame.origin.x,
@@ -56,58 +81,55 @@
 													   viewFrame.size.width,
 													   44.0);
 	
+	// Add SearchController's search bar to our view and bring it to front
 	[self.view addSubview:self.searchController.searchBar];
 	[self.view bringSubviewToFront:self.searchController.searchBar];
+
+}
+
+- (BOOL) enableLocationServices {
 	
-	self.definesPresentationContext = YES;
+	if ([CLLocationManager locationServicesEnabled]) {
+		self.locationManager.distanceFilter = 10;
+		self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+		[self.locationManager startUpdatingLocation];
+		[self.mapView setUserTrackingMode:MKUserTrackingModeFollow animated:YES];
+		return YES;
+	} else {
+		return NO;
+	}
+	
 }
 
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
-}
-
-- (BOOL)setupLocationManager {
-	BOOL isSetup = NO;
+- (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+	
 	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
 		[[[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
 									message:@"You must enable Location Services for this app in order to use it."
 								   delegate:self
 						  cancelButtonTitle:nil
 						  otherButtonTitles:@"Ok", nil] show];
-		return isSetup;
 	} else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
 		[[[UIAlertView alloc] initWithTitle:@"Location Services Restricted"
 									message:@"You must enable Location Services for this app in order to use it."
 								   delegate:self
 						  cancelButtonTitle:nil
 						  otherButtonTitles:@"Ok", nil] show];
-		return isSetup;
+	} else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+		if ([self enableLocationServices]) {
+			NSLog(@"Location Services enabled.");
+		} else {
+			NSLog(@"Couldn't enable Location Services. Please enable them in Settings > Privacy > Location Services.");
+		}
 	} else {
-		self.locationManager = [[CLLocationManager alloc] init];
-		if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusNotDetermined) {
-			// Request localisation only when app is in front
-			[self.locationManager requestWhenInUseAuthorization];
-		}
-		if ([CLLocationManager locationServicesEnabled]) {
-			self.locationManager.delegate = self;
-			self.locationManager.distanceFilter = 10;
-			self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-			isSetup = YES;
-			return isSetup;
-		}
-		
-		return isSetup;
+		NSLog(@"Error : Authorization status not determined.");
 	}
 }
 
 -(void)willPresentSearchController:(UISearchController *)aSearchController {
 	
-	CGRect searchBarFrame = aSearchController.searchBar.frame;
-	self.searchController.searchBar.frame = CGRectMake(searchBarFrame.origin.x,
-													   searchBarFrame.origin.y,
-													   self.view.frame.size.width,
-													   64.0);
+	aSearchController.searchBar.bounds = CGRectInset(aSearchController.searchBar.frame, 0.0f, 0.0f);
+	
 	// Set the position of the result's table view below the status bar and search bar
 	// Use of instance variable to do it only once, otherwise it goes down at every search request
 	if (CGRectIsEmpty(_searchTableViewRect)) {
