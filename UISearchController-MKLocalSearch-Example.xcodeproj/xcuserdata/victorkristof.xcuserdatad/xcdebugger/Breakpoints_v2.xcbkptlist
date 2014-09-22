@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "UISearchController-MKLocalSearch-Example/ViewController.m"
-            timestampString = "433109738.457937"
+            timestampString = "433113080.024333"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "143"
-            endingLineNumber = "143"
+            startingLineNumber = "171"
+            endingLineNumber = "171"
             landmarkName = "-locationManager:didChangeAuthorizationStatus:"
             landmarkType = "5">
          </BreakpointContent>

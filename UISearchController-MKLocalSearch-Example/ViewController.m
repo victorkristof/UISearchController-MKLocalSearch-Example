@@ -14,6 +14,7 @@
 - (BOOL) enableLocationServices;
 - (void) setupSearchController;
 - (void) setupSearchBar;
+- (void) searchQuery:(NSString *)query;
 
 @end
 
@@ -101,20 +102,65 @@
 	
 }
 
+- (void)searchQuery:(NSString *)query {
+	// Cancel any previous searches.
+	[self.localSearch cancel];
+	
+	MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
+	request.naturalLanguageQuery = query;
+	request.region = self.mapView.region;
+	
+	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
+	self.localSearch = [[MKLocalSearch alloc] initWithRequest:request];
+	
+	[self.localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
+		
+		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+		
+		if (error != nil) {
+			[[[UIAlertView alloc] initWithTitle:@"Map Error"
+										message:[error description]
+									   delegate:nil
+							  cancelButtonTitle:@"OK"
+							  otherButtonTitles:nil] show];
+			return;
+		}
+		
+		//			if ([response.mapItems count] == 0) {
+		//				[[[UIAlertView alloc] initWithTitle:@"No Results"
+		//											message:nil
+		//										   delegate:nil
+		//								  cancelButtonTitle:@"OK"
+		//								  otherButtonTitles:nil] show];
+		//				return;
+		//			}
+		
+		self.results = response;
+		
+		[[(UITableViewController *)self.searchController.searchResultsController tableView] reloadData];
+	}];
+}
+
 - (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 	
+	NSString *message = @"You must enable Location Services for this app in order to use it.";
+	NSString *button = @"Ok";
+	NSString *title;
+	
 	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-		[[[UIAlertView alloc] initWithTitle:@"Location Services Disabled"
-									message:@"You must enable Location Services for this app in order to use it."
+		title = @"Location Services Disabled";
+		[[[UIAlertView alloc] initWithTitle:title
+									message:message
 								   delegate:self
 						  cancelButtonTitle:nil
-						  otherButtonTitles:@"Ok", nil] show];
+						  otherButtonTitles:button, nil] show];
 	} else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
-		[[[UIAlertView alloc] initWithTitle:@"Location Services Restricted"
-									message:@"You must enable Location Services for this app in order to use it."
+		title = @"Location Services Restricted";
+		[[[UIAlertView alloc] initWithTitle:title
+									message:message
 								   delegate:self
 						  cancelButtonTitle:nil
-						  otherButtonTitles:@"Ok", nil] show];
+						  otherButtonTitles:button, nil] show];
 	} else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
 		if ([self enableLocationServices]) {
 			NSLog(@"Location Services enabled.");
@@ -147,87 +193,12 @@
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText {
 	
 	if (![searchText isEqualToString:@""]) {
-		// Cancel any previous searches.
-		[self.localSearch cancel];
-		
-		MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-		request.naturalLanguageQuery = searchText;
-		request.region = self.mapView.region;
-		
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-		self.localSearch = [[MKLocalSearch alloc] initWithRequest:request];
-		
-		[self.localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
-			
-			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-			
-			if (error != nil) {
-				[[[UIAlertView alloc] initWithTitle:@"Map Error"
-											message:[error description]
-										   delegate:nil
-								  cancelButtonTitle:@"OK"
-								  otherButtonTitles:nil] show];
-				return;
-			}
-			
-			if ([response.mapItems count] == 0) {
-				[[[UIAlertView alloc] initWithTitle:@"No Results"
-											message:nil
-										   delegate:nil
-								  cancelButtonTitle:@"OK"
-								  otherButtonTitles:nil] show];
-				return;
-			}
-			
-			self.results = response;
-			
-			//	[self.searchController setActive:YES];
-			
-			[[(UITableViewController *)self.searchController.searchResultsController tableView] reloadData];
-		}];
+		[self searchQuery:searchText];
 	}
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)aSearchBar {
-	// Cancel any previous searches.
-	[self.localSearch cancel];
-	
-	// Perform a new search.
-	MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-	request.naturalLanguageQuery = aSearchBar.text;
-	request.region = self.mapView.region;
-	
-	[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-	self.localSearch = [[MKLocalSearch alloc] initWithRequest:request];
-	
-	[self.localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error){
-		
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		
-		if (error != nil) {
-			[[[UIAlertView alloc] initWithTitle:@"Map Error"
-										message:[error description]
-									   delegate:nil
-							  cancelButtonTitle:@"OK"
-							  otherButtonTitles:nil] show];
-			return;
-		}
-		
-		if ([response.mapItems count] == 0) {
-			[[[UIAlertView alloc] initWithTitle:@"No Results"
-										message:nil
-									   delegate:nil
-							  cancelButtonTitle:@"OK"
-							  otherButtonTitles:nil] show];
-			return;
-		}
-		
-		self.results = response;
-		
-		//	[self.searchController setActive:YES];
-		
-		[[(UITableViewController *)self.searchController.searchResultsController tableView] reloadData];
-	}];
+	[self searchQuery:aSearchBar.text];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
