@@ -49,14 +49,6 @@
 	// Dispose of any resources that can be recreated.
 }
 
-- (void) setupLocationManager {
-	self.locationManager = [[CLLocationManager alloc] init];
-	self.locationManager.delegate = self;
-	
-	// Will call locationManager:didChangeAuthorizationStatus: delegate method
-	[self.locationManager requestWhenInUseAuthorization];
-}
-
 -(void) setupSearchController {
 	
 	// The TableViewController used to display the results of a search
@@ -99,7 +91,45 @@
 	} else {
 		return NO;
 	}
+}
+
+- (void) setupLocationManager {
+	self.locationManager = [[CLLocationManager alloc] init];
+	self.locationManager.delegate = self;
 	
+	// Will call locationManager:didChangeAuthorizationStatus: delegate method
+	[CLLocationManager authorizationStatus];
+}
+
+- (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+	
+	NSString *message = @"You must enable Location Services for this app in order to use it.";
+	NSString *button = @"Ok";
+	NSString *title;
+	
+	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+		title = @"Location Services Disabled";
+		[[[UIAlertView alloc] initWithTitle:title
+									message:message
+								   delegate:self
+						  cancelButtonTitle:nil
+						  otherButtonTitles:button, nil] show];
+	} else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+		title = @"Location Services Restricted";
+		[[[UIAlertView alloc] initWithTitle:title
+									message:message
+								   delegate:self
+						  cancelButtonTitle:nil
+						  otherButtonTitles:button, nil] show];
+	} else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+		if ([self enableLocationServices]) {
+			NSLog(@"Location Services enabled.");
+		} else {
+			NSLog(@"Couldn't enable Location Services. Please enable them in Settings > Privacy > Location Services.");
+		}
+	} else {
+		NSLog(@"Error : Authorization status not determined.");
+	}
 }
 
 - (void)searchQuery:(NSString *)query {
@@ -139,37 +169,6 @@
 		
 		[[(UITableViewController *)self.searchController.searchResultsController tableView] reloadData];
 	}];
-}
-
-- (void) locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
-	
-	NSString *message = @"You must enable Location Services for this app in order to use it.";
-	NSString *button = @"Ok";
-	NSString *title;
-	
-	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
-		title = @"Location Services Disabled";
-		[[[UIAlertView alloc] initWithTitle:title
-									message:message
-								   delegate:self
-						  cancelButtonTitle:nil
-						  otherButtonTitles:button, nil] show];
-	} else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
-		title = @"Location Services Restricted";
-		[[[UIAlertView alloc] initWithTitle:title
-									message:message
-								   delegate:self
-						  cancelButtonTitle:nil
-						  otherButtonTitles:button, nil] show];
-	} else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
-		if ([self enableLocationServices]) {
-			NSLog(@"Location Services enabled.");
-		} else {
-			NSLog(@"Couldn't enable Location Services. Please enable them in Settings > Privacy > Location Services.");
-		}
-	} else {
-		NSLog(@"Error : Authorization status not determined.");
-	}
 }
 
 -(void)willPresentSearchController:(UISearchController *)aSearchController {
