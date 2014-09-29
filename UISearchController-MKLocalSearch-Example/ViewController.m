@@ -107,14 +107,14 @@
 	NSString *button = @"Ok";
 	NSString *title;
 	
-	if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) {
+	if (status == kCLAuthorizationStatusDenied) {
 		title = @"Location Services Disabled";
 		[[[UIAlertView alloc] initWithTitle:title
 									message:message
 								   delegate:self
 						  cancelButtonTitle:nil
 						  otherButtonTitles:button, nil] show];
-	} else if([CLLocationManager authorizationStatus] == kCLAuthorizationStatusRestricted) {
+	} else if(status == kCLAuthorizationStatusRestricted) {
 		title = @"Location Services Restricted";
 		[[[UIAlertView alloc] initWithTitle:title
 									message:message
@@ -122,13 +122,16 @@
 						  cancelButtonTitle:nil
 						  otherButtonTitles:button, nil] show];
 	} else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
+		// Note: kCLAuthorizationStatusAuthorizedWhenInUse depends on the request...Authorization
+		// (Always or WhenInUse)
 		if ([self enableLocationServices]) {
 			NSLog(@"Location Services enabled.");
 		} else {
 			NSLog(@"Couldn't enable Location Services. Please enable them in Settings > Privacy > Location Services.");
 		}
-	} else {
+	} else if (status == kCLAuthorizationStatusNotDetermined) {
 		NSLog(@"Error : Authorization status not determined.");
+		[self.locationManager requestWhenInUseAuthorization];
 	}
 }
 
